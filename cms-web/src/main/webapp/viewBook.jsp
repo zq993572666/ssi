@@ -11,7 +11,7 @@
  <script type="text/javascript" src="/js/easyUI/jquery.easyui.min.js"></script>
   <script type="text/javascript">
   var editcount = 0; 
-  var step1Ok = function () {
+/*   var step1Ok = function () {
 
       $.messager.progress({ 
           title: '请等待', 
@@ -47,18 +47,8 @@
 
 	        } 
 	    }); 
-	};
-   function verify(){
-		/* $.ajax({
-			  type: "GET",
-			  "url": "/pageViewSBook.action?page=1&rows=5",
-			  success: function(data){
-				     alert( "Data Saved: " + data );
-				     
-			  }
-			
-			}); */
-			
+	}; */
+/*    function verify(){
 	   $('#tt').datagrid({ 
 	        url: "pageViewSBook.action"
 	    });
@@ -72,52 +62,8 @@
 		         $(this).pagination('loaded');
 		      },
 		   });
-                        
-        
-			
-   }
-	  /* $(function(){
-		   $('#tt').datagrid({
-		    title:'datagrid小例子',
-		    iconCls:'icon-ok',
-		    width:500,
-		    height:320,
-		    pageSize:5
-		    nowrap:false,
-		    striped: true,
-		    collapsible:true,
-		    url:'pageViewSBook.action',
-		    loadMsg:'数据装载中......',
-		    sortName:'code',
-		    sortOrder:'desc',
-		    remoteSort:false,
-		    frozenColumns:[[
-		     {field:'ck',checkbox:true}
-		    ]],
-		    columns:[[
-		     {title:'id',field:'id',width:'50',rowspan:2,align:'center'},
-		     {title:'书名',field:'title',width:'60',rowspan:2,align:'center'},
-		     {title:'作者',field:'author',width:'50',rowspan:2,align:'center'},
-		     {title:'数量',field:'total',width:'50',rowspan:2,align:'center'},
-		     {title:'价格',field:'price',width:'50',rowspan:2,align:'center'},
-		     {title:'publisher',field:'publisher',width:'50',rowspan:2,align:'center'}
-		 
-		    ]],
-		    pagination:true,
-		    rownumbers:true
-		    
-		   });
-		   $('#tt').datagrid('getPager').pagination({
-		    displayMsg:'当前显示从{from}到{to}共{total}记录',
-		    onBeforeRefresh:function(pageNumber, pageSize){
-		     $(this).pagination('loading');
-		     alert('pageNumber:'+pageNumber+',pageSize:'+pageSize);
-		     $(this).pagination('loaded');
-		    },
-		   });
-		   
-		   //$('#tt').datagrid({url:'easyAction.action'});
-		  }); */
+    } */
+
 		  $(function(){  
 		        $('#tt').datagrid({    
 		                 title:'交易码列表',    
@@ -135,7 +81,7 @@
 		               url:'pageViewSBook.action', 
 		                 columns:[[
 		              		     {title:'id',field:'id',rowspan:2,align:'center'},
-		              		     {title:'书名',field:'title',width:'70',align:'center'},
+		              		     {title:'书名',field:'title',width:'70',align:'center',sortable:true},
 		              		     {title:'作者',field:'author',width:'50',align:'center',
 		              		    	 editor:{ 
 		              		    	type:'validatebox', 
@@ -144,7 +90,9 @@
 		              		    	} 
 		              		    	} },
 		              		     {title:'数量',field:'total',width:'50',rowspan:2,align:'center'},
-		              		     {title:'价格',field:'price',width:'50',rowspan:2,align:'center'},
+		              		     {title:'价格',field:'price',width:'50',rowspan:2,sortable:true,align:'center',sorter:numberSort
+		              		    	
+		              		    },
 		              		     {title:'publisher',field:'publisher',width:'50',rowspan:2,align:'center'},
 		              		     {field:'action',title:'操作',width:70,align:'center', 
 		              		    	formatter:function(value,row,index){ 
@@ -195,18 +143,18 @@
 		     		   
 		             });  
 		              //设置分页控件    
-		        $('#tt').datagrid('getPager').pagination({
-		        	beforePageText: '第',//页数文本框前显示的汉字  
-	                   afterPageText: '页    共 {pages} 页',  
+		       $('#tt').datagrid('getPager').pagination({
+		        	  beforePageText: '第',//页数文本框前显示的汉字  
+	                  afterPageText: '页    共 {pages} 页',  
 	                  displayMsg: '当前显示 {from} - {to} 条记录   共 {total} 条记录', 
-				    onBeforeRefresh:function(pageNumber, pageSize){
-				     $(this).pagination('loading');
-				     alert('pageNumber:'+pageNumber+',pageSize:'+pageSize);
-				     $(this).pagination('loaded');
-				    },
-				   });
+				      onBeforeRefresh:function(pageNumber, pageSize){
+				         $(this).pagination('loading');
+				         alert('pageNumber:'+pageNumber+',pageSize:'+pageSize);
+				         $(this).pagination('loaded');
+				      }
+				});
 		                        
-		        });  
+		 });   
 		  
 		  
 		
@@ -268,23 +216,7 @@
 		<h2><b>测试easyui的DataGrid</b></h2>
 		
    		 <table id="tt">
-		 <!--   <div id="tb" style="padding:5px;height:auto">  
-		    <div style="margin-bottom:5px">  
-		        <a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">添加</a>
-				<a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-edit'">编辑</a>
-				<a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-search'">搜索</a>
-				
-				<a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-print'">打印</a>
-				<a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-help'"> 帮助</a>
-				<a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-save'">保存</a>
-				<a href="#" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-back'">返回</a>
-		    </div>  
-		    <div>  
-		        Date From: <input class="easyui-datebox" style="width:80px">  
-		        To: <input class="easyui-datebox" style="width:80px"> 		                
-		        <input   type="button" class="easyui-linkbutton" iconCls="icon-search" value="Search"/> 
-		    </div>  
-		</div>  -->
+		<th field="PRICE" width="120" sortable="true" align="right" halign="center" sorter="numberSort">批发价</th>
    		 </table>
 		</div>
 	</body>

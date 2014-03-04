@@ -24,8 +24,8 @@ public class SBookAction extends BaseAction{
 	private String bookId;
 	private List bookList;
 	private String Id;
-	private int page ;
-	private int rows;
+/*	private int page ;
+	private int rows;*/
 	private Map<String,Object> resultMap=new HashMap<String,Object>();
 
 	/**
@@ -34,13 +34,13 @@ public class SBookAction extends BaseAction{
 	 * @return ��������Ƿ�ɹ�
 	 */
 	public String pageViewSBook() {
-		/*page =Integer.parseInt(getHttpServletRequest().getParameter("page"));
-		  int row = Integer.parseInt(getHttpServletRequest().getParameter("rows"));//接受参数page和rows
-*/		int  total=bookServices.getBookTotal();
+		int page =Integer.parseInt(getHttpServletRequest().getParameter("page"));
+		int row = Integer.parseInt(getHttpServletRequest().getParameter("rows"));//接受参数page和rows
+	int  total=bookServices.getBookTotal();
 		resultMap.put("total", total);
 		Map map=new HashMap();
-		map.put("start", (page-1)*rows);
-		map.put("page", rows);
+		map.put("start", (page-1)*row);
+		map.put("page", row);
 		try {
 			List<Object> rows = bookServices.findPageBook(map);
 			resultMap.put("rows", rows);
@@ -182,7 +182,7 @@ public class SBookAction extends BaseAction{
 	public void setResultMap(Map<String, Object> resultMap) {
 		this.resultMap = resultMap;
 	}
-	public int getPage() {
+/*	public int getPage() {
 		return page;
 	}
 	public void setPage(int page) {
@@ -193,7 +193,7 @@ public class SBookAction extends BaseAction{
 	}
 	public void setRows(int rows) {
 		this.rows = rows;
-	}
+	}*/
 
 
 
