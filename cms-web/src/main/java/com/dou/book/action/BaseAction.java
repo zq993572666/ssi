@@ -13,38 +13,49 @@ import org.apache.struts2.interceptor.ServletResponseAware;
 import com.dou.book.util.JsonUtil;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class BaseAction extends ActionSupport implements ServletRequestAware,RequestAware,ServletResponseAware {
-private HttpServletRequest httpServletRequest;
-private HttpServletResponse httpServletResponse;
-
+public class BaseAction extends ActionSupport implements ServletRequestAware,
+		RequestAware, ServletResponseAware {
+	protected HttpServletRequest httpServletRequest;
+	protected HttpServletResponse httpServletResponse;
 
 	public HttpServletRequest getHttpServletRequest() {
 		return httpServletRequest;
 	}
-public void objectToJsonString(Object object){
-	httpServletResponse.setCharacterEncoding("UTF-8"); 
-	httpServletResponse.setContentType("application/json");  
-	    try {
-			String jsonString=JsonUtil.objectToJson(object);
+
+	public void objectToJsonString(Object object) {
+		httpServletResponse.setContentType("text/html;charset=utf-8");
+		try {
+			String jsonString = JsonUtil.objectToJson(object);
 			httpServletResponse.getWriter().print(jsonString);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	    
+
 	}
-public void setServletResponse(HttpServletResponse arg0) {
-	// TODO Auto-generated method stub
-	httpServletResponse=arg0;
-}
-public void setRequest(Map<String, Object> arg0) {
-	// TODO Auto-generated method stub
-	
-	
-}
-public void setServletRequest(HttpServletRequest arg0) {
-	// TODO Auto-generated method stub
-	httpServletRequest=arg0;
-	
-}
+	public void print(Object object){
+		httpServletResponse.setCharacterEncoding("UTF-8"); 
+		    try {
+				httpServletResponse.getWriter().print(object);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		    
+	}
+	public void setServletResponse(HttpServletResponse arg0) {
+		// TODO Auto-generated method stub
+		httpServletResponse = arg0;
+	}
+
+	public void setRequest(Map<String, Object> arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void setServletRequest(HttpServletRequest arg0) {
+		// TODO Auto-generated method stub
+		httpServletRequest = arg0;
+
+	}
 }

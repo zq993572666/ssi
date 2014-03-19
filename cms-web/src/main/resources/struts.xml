@@ -15,6 +15,7 @@
 	<constant name="struts.i18n.reload" value="true" />
 	<!-- 文件上传最大值 -->
 	<constant name="struts.multipart.maxSize" value="104857600" />
+	   <include file="struts-*.xml"></include>
 	<package name="book" extends="struts-default" >
 		<action name="pageViewSBook" class="com.dou.book.action.SBookAction" method="pageViewSBook">
 			<result >
@@ -47,6 +48,8 @@
 			<result name="success" type="redirectAction">/viewSBook.action</result>
 			<result name="error" type="redirectAction">/viewSBook.action</result>
 		</action>
+		
 	</package>
+	
 
 </struts>
