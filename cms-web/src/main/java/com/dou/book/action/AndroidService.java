@@ -25,13 +25,8 @@ public class AndroidService extends BaseAction {
 	}
 
 	public void login() {
-		String name = httpServletRequest.getParameter("name");
-		String password = httpServletRequest.getParameter("password");
-		List<String> cities = new ArrayList<String>();
-		cities.add(name);
-		cities.add(password);
-		Gson gson = new Gson();
-		String json = gson.toJson(cities);
-		print(json);
+		String name = httpServletRequest.getParameter("userName");
+		String password = httpServletRequest.getParameter("pass");
+		print(1);
 	}
 }

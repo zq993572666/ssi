@@ -34,7 +34,7 @@ public class BaseAction extends ActionSupport implements ServletRequestAware,
 
 	}
 	public void print(Object object){
-		httpServletResponse.setCharacterEncoding("UTF-8"); 
+		httpServletResponse.setContentType("text/html;charset=utf-8");
 		    try {
 				httpServletResponse.getWriter().print(object);
 			} catch (IOException e) {
