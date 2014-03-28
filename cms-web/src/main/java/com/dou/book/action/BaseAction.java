@@ -3,22 +3,25 @@ package com.dou.book.action;
 import java.io.IOException;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.interceptor.RequestAware;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
+import org.apache.struts2.util.ServletContextAware;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.dou.book.util.JsonUtil;
 import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class BaseAction extends ActionSupport implements ServletRequestAware,
-		RequestAware, ServletResponseAware {
+		RequestAware, ServletResponseAware,ServletContextAware {
 	protected HttpServletRequest httpServletRequest;
 	protected HttpServletResponse httpServletResponse;
-
+	protected ServletContext servletContext;
 	public HttpServletRequest getHttpServletRequest() {
 		return httpServletRequest;
 	}
@@ -70,5 +73,15 @@ public class BaseAction extends ActionSupport implements ServletRequestAware,
 		// TODO Auto-generated method stub
 		httpServletRequest = arg0;
 
+	}
+
+	@Override
+	public void setServletContext(ServletContext context) {
+		// TODO Auto-generated method stub
+		servletContext=context;
+	}
+	public Object getBeanByClassNameStr(String beanName){
+		Object obj=(Object)WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext).getBean(beanName);
+		return obj;
 	}
 }

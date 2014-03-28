@@ -14,26 +14,31 @@
 	
 	  <context-param>
 	    <param-name>log4jConfigLocation</param-name>
-	    <param-value>/log4j.properties</param-value>
+	    <param-value>/WEB-INF/classes/log4j.properties</param-value>
 	  </context-param>	
   <!-- 每隔60秒检测一下Lo4j配置文件 -->
 	  <context-param>   
 	  	<param-name>log4jRefreshInterval</param-name>   
 	    <param-value>60000</param-value>   
 	  </context-param>  
-
-	<!--   <listener>   
+  	 <listener>   
 	  	<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>   
-	  </listener>  -->
-	<filter>
+	  </listener> 
+	<!--   <filter>
+		<filter-name>logres</filter-name>
+		<filter-class>com.dou.book.filter.LogResFilter.LogResFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>logres</filter-name>
+		<url-pattern>*.do</url-pattern>
+		<url-pattern>*.action</url-pattern>
+	</filter-mapping> -->
+<!-- 	<filter>
 		<filter-name>struts-cleanup</filter-name>
 		<filter-class>
 			org.apache.struts2.dispatcher.ActionContextCleanUp
+			
 		</filter-class>
-	</filter>
-	<filter>
-		<filter-name>struts2.0</filter-name>
-		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>struts-cleanup</filter-name>
@@ -41,7 +46,12 @@
 		<url-pattern>*.htm</url-pattern>
 		<url-pattern>*.action</url-pattern>
 		<url-pattern>*.jsp</url-pattern>
-	</filter-mapping>
+	</filter-mapping> -->
+	<filter>
+		<filter-name>struts2.0</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+	</filter>
+
 
 	<filter-mapping>
 		<filter-name>struts2.0</filter-name>

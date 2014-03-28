@@ -3,13 +3,30 @@ package com.dou.book.action;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
+import javax.sql.DataSource;
+
+import org.apache.log4j.Logger;
+import org.apache.log4j.MDC;
+import org.apache.struts2.ServletActionContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import com.dou.book.data.pojo.Person;
+import com.dou.book.data.pojo.User;
+import com.dou.book.util.SpringUtils;
 import com.google.gson.Gson;
 
 public class AndroidService extends BaseAction {
 	/**
 	 * 
 	 */
+	/**数据库连接对象*/ 
+	@Autowired
+	private DataSource dataSource;
+	static Logger logger = Logger.getLogger(AndroidService.class);
 	private static final long serialVersionUID = 8889886709198438224L;
 
 	public void androidService() throws Exception {
@@ -24,11 +41,26 @@ public class AndroidService extends BaseAction {
 	}
 
 	public void login() {
+		ApplicationContext AC=SpringUtils.applicationContext;
+		//DataSource ds=(DataSource) SpringUtils.applicationContext.getBean("dataSource");
 		String name = httpServletRequest.getParameter("userName");
 		String password = httpServletRequest.getParameter("pass");
+		//将要插入log4j中的信息放入log中
+		 MDC.put("userId", "123");
+		 MDC.put("userName", "zhaoqun");
+		 MDC.put("operation", "添加");
+		 logger.info("select * from log where logid='111'");
+		 
 		print(1);
 	}
 	public void getPersonList(){
+		// ServletContext servletContext = ServletActionContext.getServletContext();  
+		DataSource ds=(DataSource) getBeanByClassNameStr("dataSource");
+		HttpSession httpSession=getHttpServletRequest().getSession();
+		User user=new User();
+		user.setUserId("123");
+		user.setUserName("zhaoqun");
+		httpSession.setAttribute("user", user);
 		List<Person> cities = new ArrayList<Person>();
 		Person person1=new Person();
 		person1.setId("1");
