@@ -1,10 +1,9 @@
 package com.dou.book.action;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+import com.dou.book.data.pojo.Person;
 import com.google.gson.Gson;
 
 public class AndroidService extends BaseAction {
@@ -28,5 +27,19 @@ public class AndroidService extends BaseAction {
 		String name = httpServletRequest.getParameter("userName");
 		String password = httpServletRequest.getParameter("pass");
 		print(1);
+	}
+	public void getPersonList(){
+		List<Person> cities = new ArrayList<Person>();
+		Person person1=new Person();
+		person1.setId("1");
+		cities.add(person1);
+		person1.setName("zhaoqun");
+		Person person2=new Person();
+		person2.setId("2");
+		person2.setName("理性来");
+		cities.add(person2);
+		Gson gson = new Gson();
+		String json = gson.toJson(cities);
+		print(json);
 	}
 }

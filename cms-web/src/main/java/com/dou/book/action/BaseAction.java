@@ -11,6 +11,7 @@ import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 
 import com.dou.book.util.JsonUtil;
+import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class BaseAction extends ActionSupport implements ServletRequestAware,
@@ -37,6 +38,18 @@ public class BaseAction extends ActionSupport implements ServletRequestAware,
 		httpServletResponse.setContentType("text/html;charset=utf-8");
 		    try {
 				httpServletResponse.getWriter().print(object);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		    
+	}
+	public void printJsonString(Object object){
+		httpServletResponse.setContentType("text/html;charset=utf-8");
+		    try {
+		    	Gson gson = new Gson();
+		    	String json = gson.toJson(object);
+				httpServletResponse.getWriter().print(json);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
