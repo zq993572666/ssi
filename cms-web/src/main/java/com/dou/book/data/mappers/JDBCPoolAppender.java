@@ -44,10 +44,13 @@ public class JDBCPoolAppender extends org.apache.log4j.jdbc.JDBCAppender {
 				sqlArr[0]=sqlArr[0].trim();
 				//values后面的sql语句
 				sqlArr[1]=sqlArr[1].trim();
-				Pattern intoP=Pattern.compile("\\s+[Ii][Nn][Tt][Oo]\\s+");
+				String intoReg="\\s+[Ii][Nn][Tt][Oo]\\s+";
+				Pattern intoP=Pattern.compile(intoReg);
 				Matcher intoMatcher=	intoP.matcher(sqlArr[0]);
 				if(intoMatcher.find()){
-					intoP.split("");
+					//intoP.sp;
+				String[] splitStrings=	sqlArr[0].split(intoReg);
+				
 					
 				}else{
 					throw new SQLException("sql语句里不包含into或INTO");
