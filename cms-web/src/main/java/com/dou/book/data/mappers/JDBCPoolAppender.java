@@ -4,9 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.sql.DataSource;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.spi.ErrorCode;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -30,8 +33,17 @@ public class JDBCPoolAppender extends org.apache.log4j.jdbc.JDBCAppender {
 		    Connection con = null;
 		   PreparedStatement stmt = null;
 		 //  if(sql.matches(""))
-String[] sqlArr=sql.split("VALUES");
-
+			String reg="[Vv][aA][Ll][Uu][Ee][Ss]?";
+			Pattern p=Pattern.compile(reg);
+			Matcher m=p.matcher(sql);
+			boolean isFind=m.find();
+			if(isFind){
+				String[] sqlArr=sql.split(reg);
+				sqlArr[0]=sqlArr[0].trim();
+				sqlArr[1]=sqlArr[1].trim();
+			}else{
+				throw new SQLException("sql语句里不包含value或values");
+			}
 		    try {
 		        con = getConnection();
 
