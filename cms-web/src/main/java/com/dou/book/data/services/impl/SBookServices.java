@@ -3,10 +3,11 @@ package com.dou.book.data.services.impl;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.dou.book.data.mappers.ISBookMapper;
+import com.dou.book.data.mappers.SBookMapper;
 import com.dou.book.data.pojo.SBook;
 import com.dou.book.data.services.ISBookServices;
 
@@ -14,7 +15,7 @@ import com.dou.book.data.services.ISBookServices;
 @SuppressWarnings("unchecked")
 public class SBookServices implements ISBookServices {
 	@Autowired
-	ISBookMapper bookMapper;
+	SBookMapper bookMapper;
 
 	public List findAllBook() throws RuntimeException {
 		return bookMapper.findAllBook();
@@ -63,7 +64,9 @@ public class SBookServices implements ISBookServices {
 	// bookMapper.deleteBook(book);
 	// }
 
-	
+	/*public List<Boo> getBookPage(){
+		
+	}*/
 	public int getBookTotal() {
 		// TODO Auto-generated method stub
 		return bookMapper.getBookTotal();
@@ -75,14 +78,14 @@ public class SBookServices implements ISBookServices {
 		return bookMapper.findPageBook(map);
 	}
 
-	/*
-	 * public void updateBook(SBook book) throws RuntimeException {
-	 * sbookMapper.updateBook(book); }
+	/* (non-Javadoc)
+	 * @see com.dou.book.data.services.ISBookServices#findPage(java.util.Map, org.apache.ibatis.session.RowBounds)
 	 */
+	@Override
+	public List<SBook> findPage(Map map, RowBounds rowBounds) {
+		// TODO Auto-generated method stub
+		return bookMapper.findPage(map, rowBounds);
+	}
 
-	/*
-	 * public SBook getBookById(int id) throws RuntimeException { return
-	 * sbookMapper.findBookById(id); }
-	 */
 
 }

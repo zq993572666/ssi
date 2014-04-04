@@ -59,6 +59,6 @@
 			advice-ref="transactionAdvice" />
 	</aop:config>
 
-   
+   <bean id="springUtils" class="com.dou.book.util.SpringUtils"/>
 	
 </beans>

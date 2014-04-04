@@ -16,7 +16,7 @@
  function verify(){
 		$.ajax({
 			  type: "GET",
-			  url: "",
+			  url: "http://localhost:9999/androidService.action",
 			  dataType: "json",
 			  success: function(msg){
 				     alert( "Data Saved: " + msg );

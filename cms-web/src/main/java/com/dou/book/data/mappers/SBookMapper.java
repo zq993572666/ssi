@@ -3,10 +3,12 @@ package com.dou.book.data.mappers;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
+
 import com.dou.book.data.pojo.SBook;
 
  
-public interface ISBookMapper {
+public interface SBookMapper {
 	/**
 	 * ���һ��ͼ������ݿ���
 	 * 
@@ -75,4 +77,5 @@ public interface ISBookMapper {
 	//public boolean deleteBook(int book) throws RuntimeException;
 	public int getBookTotal();
 	public List<SBook> findPageBook(Map map);
+	public List<SBook> findPage(Map map,RowBounds rowBounds);
 }

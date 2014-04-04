@@ -39,23 +39,24 @@ public class AndroidService extends BaseAction {
 		String json = gson.toJson(cities);
 		print(json);
 	}
-
+	public String  toAndroidService() throws Exception {
+		return "toAndroidService";
+		
+	}
 	public void login() {
-		ApplicationContext AC=SpringUtils.applicationContext;
-		//DataSource ds=(DataSource) SpringUtils.applicationContext.getBean("dataSource");
+		DataSource ds=(DataSource) SpringUtils.getBean("dataSource");
 		String name = httpServletRequest.getParameter("userName");
 		String password = httpServletRequest.getParameter("pass");
 		//将要插入log4j中的信息放入log中
 		 MDC.put("userId", "123");
 		 MDC.put("userName", "zhaoqun");
 		 MDC.put("operation", "添加");
-		 logger.info("select * from log where logid='111'");
+		 logger.info("select * from log where logid=111");
 		 
 		print(1);
 	}
 	public void getPersonList(){
 		// ServletContext servletContext = ServletActionContext.getServletContext();  
-		DataSource ds=(DataSource) getBeanByClassNameStr("dataSource");
 		HttpSession httpSession=getHttpServletRequest().getSession();
 		User user=new User();
 		user.setUserId("123");

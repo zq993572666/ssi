@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-
+	<properties>
+		<property name="dialect" value="mysql" />
+	</properties>
+	
 	<typeAliases>
 		<typeAlias alias="SBook" type="com.dou.book.data.pojo.SBook" />		
 	</typeAliases>
-	 <mappers>
-		<mapper resource="com/dou/book/data/mappers/SBookMapper.xml" />	
-		<mapper resource="com/dou/book/data/mappers/EmployerMapper.xml" />
-		<mapper resource="com/dou/book/data/mappers/DepartmentMapper.xml" />	
-	</mappers> 
+	<!-- MyBatis实现物理分页 -->
+ 	<plugins>
+		<plugin interceptor="com.dou.book.interceptor.PaginationInterceptor" />
+	</plugins> 
 </configuration>		
 			

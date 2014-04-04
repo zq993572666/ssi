@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dou.book.data.mappers.ISBookMapper">
+<mapper namespace="com.dou.book.data.mappers.SBookMapper">
 
 	<resultMap type="com.dou.book.data.pojo.SBook" id="sBookResultMap">
 		<id property="id" column="id" />
@@ -55,6 +55,10 @@
 		select count(*) from sbook 
 	</select>
 	<select id="findPageBook" resultMap="sBookResultMap" parameterType="map">
-		SELECT * from sbook limit #{start},#{page};
+		SELECT * from sbook limit #{start},#{page}
 	</select>
+	<select id="findPage" resultMap="sBookResultMap" parameterType="map">
+		SELECT * from sbook 
+	</select>
+	
 </mapper>

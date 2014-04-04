@@ -32,8 +32,7 @@ public class JDBCPoolAppender extends org.apache.log4j.jdbc.JDBCAppender {
 
 		    Connection con = null;
 		   PreparedStatement stmt = null;
-		 //  if(sql.matches(""))
-			String reg="[Vv][aA][Ll][Uu][Ee][Ss]?";
+			/*String reg="[Vv][aA][Ll][Uu][Ee][Ss]?";
 			Pattern p=Pattern.compile(reg);
 			Matcher m=p.matcher(sql);
 			boolean isFind=m.find();
@@ -48,16 +47,13 @@ public class JDBCPoolAppender extends org.apache.log4j.jdbc.JDBCAppender {
 				Pattern intoP=Pattern.compile(intoReg);
 				Matcher intoMatcher=	intoP.matcher(sqlArr[0]);
 				if(intoMatcher.find()){
-					//intoP.sp;
-				String[] splitStrings=	sqlArr[0].split(intoReg);
-				
-					
+					String[] splitStrings=	sqlArr[0].split(intoReg);
 				}else{
 					throw new SQLException("sql语句里不包含into或INTO");
 				}
 			}else{
 				throw new SQLException("sql语句里不包含value或values");
-			}
+			}*/
 		    try {
 		        con = getConnection();
 

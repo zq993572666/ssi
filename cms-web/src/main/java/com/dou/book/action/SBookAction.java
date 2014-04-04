@@ -1,9 +1,11 @@
 package com.dou.book.action;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.dou.book.data.pojo.Department;
@@ -12,6 +14,7 @@ import com.dou.book.data.pojo.SBook;
 import com.dou.book.data.services.DepService;
 import com.dou.book.data.services.ISBookServices;
 import com.dou.book.util.JsonUtil;
+import com.google.gson.Gson;
 
 @SuppressWarnings("unchecked")
 public class SBookAction extends BaseAction{
@@ -134,6 +137,13 @@ public class SBookAction extends BaseAction{
 			this.setTips("ɾ�����ʧ��");
 		}
 		return result;
+	}
+	public void findPageTest(){
+		List<SBook> bookList=bookServices.findPage(null, new RowBounds(0,10));
+		
+		Gson gson = new Gson();
+		String json = gson.toJson(bookList);
+		print(json);
 	}
 
 	public SBook getSbook() {

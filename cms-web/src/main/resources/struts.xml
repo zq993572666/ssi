@@ -48,7 +48,9 @@
 			<result name="success" type="redirectAction">/viewSBook.action</result>
 			<result name="error" type="redirectAction">/viewSBook.action</result>
 		</action>
-		
+		<action name="findPageTest" class="com.dou.book.action.SBookAction" method="findPageTest">
+			<result name="success" >/viewBook.jsp</result>
+		</action>
 	</package>
 	
 

@@ -3,6 +3,8 @@ package com.dou.book.data.services;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
+
 import com.dou.book.data.pojo.SBook;
 
 @SuppressWarnings("unchecked")
@@ -77,4 +79,5 @@ public interface ISBookServices {
 	void updateTrantion() throws RuntimeException;
 	public int getBookTotal();
 	public List findPageBook(Map map);
+	public List<SBook> findPage(Map map,RowBounds rowBounds);
 }

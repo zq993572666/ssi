@@ -4,6 +4,9 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
 	<package name="android" extends="struts-default" >
+	<action name="toAndroidService" class="com.dou.book.action.AndroidService" method="toAndroidService">
+		<result name="toAndroidService">/viewPage.jsp</result>
+		</action>
 		<action name="androidService" class="com.dou.book.action.AndroidService" method="androidService">
 		</action>
 		<action name="login" class="com.dou.book.action.AndroidService" method="login">
