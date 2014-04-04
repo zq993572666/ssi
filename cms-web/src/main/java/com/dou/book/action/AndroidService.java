@@ -7,6 +7,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
+import org.apache.ibatis.executor.statement.PreparedStatementHandler;
 import org.apache.log4j.Logger;
 import org.apache.log4j.MDC;
 import org.apache.struts2.ServletActionContext;
@@ -36,6 +37,7 @@ public class AndroidService extends BaseAction {
 		cities.add("北京");
 		cities.add("湖南");
 		Gson gson = new Gson();
+		PreparedStatementHandler
 		String json = gson.toJson(cities);
 		print(json);
 	}
