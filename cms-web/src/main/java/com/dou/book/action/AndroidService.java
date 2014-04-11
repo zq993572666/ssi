@@ -1,5 +1,6 @@
 package com.dou.book.action;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,19 +18,16 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.dou.book.data.pojo.Person;
 import com.dou.book.data.pojo.User;
+import com.dou.book.util.OperLogUtil;
 import com.dou.book.util.SpringUtils;
 import com.google.gson.Gson;
 
-public class AndroidService extends BaseAction {
+public class AndroidService  {
 	/**
 	 * 
 	 */
-	/**数据库连接对象*/ 
-	@Autowired
-	private DataSource dataSource;
 	static Logger logger = Logger.getLogger(AndroidService.class);
 	private static final long serialVersionUID = 8889886709198438224L;
-
 	public void androidService() throws Exception {
 		List<String> cities = new ArrayList<String>();
 		cities.add("广州");
@@ -37,33 +35,29 @@ public class AndroidService extends BaseAction {
 		cities.add("北京");
 		cities.add("湖南");
 		Gson gson = new Gson();
-		PreparedStatementHandler
 		String json = gson.toJson(cities);
-		print(json);
 	}
 	public String  toAndroidService() throws Exception {
 		return "toAndroidService";
 		
 	}
-	public void login() {
-		DataSource ds=(DataSource) SpringUtils.getBean("dataSource");
-		String name = httpServletRequest.getParameter("userName");
-		String password = httpServletRequest.getParameter("pass");
+	public void login() throws SQLException {
+		//DataSource ds=(DataSource) SpringUtils.getBean("dataSource");
+		OperLogUtil.log();
 		//将要插入log4j中的信息放入log中
 		 MDC.put("userId", "123");
 		 MDC.put("userName", "zhaoqun");
 		 MDC.put("operation", "添加");
 		 logger.info("select * from log where logid=111");
 		 
-		print(1);
 	}
 	public void getPersonList(){
 		// ServletContext servletContext = ServletActionContext.getServletContext();  
-		HttpSession httpSession=getHttpServletRequest().getSession();
+	//	HttpSession httpSession=getHttpServletRequest().getSession();
 		User user=new User();
 		user.setUserId("123");
 		user.setUserName("zhaoqun");
-		httpSession.setAttribute("user", user);
+		//httpSession.setAttribute("user", user);
 		List<Person> cities = new ArrayList<Person>();
 		Person person1=new Person();
 		person1.setId("1");
@@ -75,6 +69,6 @@ public class AndroidService extends BaseAction {
 		cities.add(person2);
 		Gson gson = new Gson();
 		String json = gson.toJson(cities);
-		print(json);
+	//	print(json);
 	}
 }

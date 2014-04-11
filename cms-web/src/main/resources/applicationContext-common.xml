@@ -58,7 +58,9 @@
 		<aop:advisor pointcut-ref="transactionPointcut"
 			advice-ref="transactionAdvice" />
 	</aop:config>
-
+<!--spring bean工具类 -->
    <bean id="springUtils" class="com.dou.book.util.SpringUtils"/>
-	
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache" scope="prototype">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
 </beans>
